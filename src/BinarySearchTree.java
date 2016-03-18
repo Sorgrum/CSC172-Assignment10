@@ -25,60 +25,45 @@ public class BinarySearchTree<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
-	public void insertRec(MyTreeNode<T> node, T x) {
-		if (node == null) {
-			node = new MyTreeNode<>();
-			node.data = x;
-		} else {
-			if (node.data.compareTo(x) > 0) {
-				insertRec(node.leftChild, x);
-			} else if (node.data.compareTo(x) < 0) {
-				insertRec(node.rightChild, x);
+	@Override
+	public void delete(T x) {
+		if (lookup(x)){
+			if (root != null) {
+				root.delete(x);
 			}
 		}
 	}
 
 	@Override
-	public void delete(T x) {
-
-	}
-
-	@Override
 	public boolean lookup(T x) {
-		return false;
+
+		if (root == null) {
+			return false;
+		} else {
+
+			return root.lookup(x);
+		}
 	}
 
 	@Override
 	public void printPreOrder() {
-
+		if (root != null) {
+			root.printPreOrder();
+		}
 	}
 
 	@Override
 	public void printInOrder() {
 		if (root != null) {
-			System.out.println(root.data);
-			if (root.leftChild != null) {
-				printInOrderRec(root.leftChild);
-				System.out.println(root.leftChild.data);
-			} else if (root.rightChild != null) {
-				printInOrderRec(root.rightChild);
-				System.out.println(root.rightChild);
-			}
+			root.printInOrder();
 		}
 	}
 
-	public void printInOrderRec(MyTreeNode<T> node) {
-		if (node.leftChild != null) {
-			printInOrderRec(node.leftChild);
-			System.out.println(node.leftChild.data);
-		} else if (node.rightChild != null) {
-			printInOrderRec(node.rightChild);
-			System.out.println(node.rightChild);
-		}
-	}
 
 	@Override
 	public void printPostOrder() {
-
+		if (root != null) {
+			root.printPostOrder();
+		}
 	}
 }
