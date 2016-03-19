@@ -44,8 +44,20 @@ public class MyTreeNode<T extends Comparable<T>> {
 			// If the node is a leaf
 			if (this.leftChild == null && this.rightChild == null) {
 				this.parent = null;
-			} else if ((this.leftChild == null && this.rightChild != null) || (this.leftChild != null && this.rightChild == null)) {
+			}
+			// If the parent has one child
+			else if (this.leftChild == null || this.rightChild == null) {
+				this.parent = this;
+			} else {
+				MyTreeNode<T> tmpRightChild = this.rightChild;
+				MyTreeNode<T> leftMostNodeOfRightChild = tmpRightChild.leftChild;
 
+				while (leftMostNodeOfRightChild.leftChild != null) {
+					leftMostNodeOfRightChild = leftMostNodeOfRightChild.leftChild;
+				}
+
+				this.data = leftMostNodeOfRightChild.data;
+				leftMostNodeOfRightChild.parent.leftChild = leftMostNodeOfRightChild.rightChild;
 			}
 		}
 		// Traverse the tree until you find the data

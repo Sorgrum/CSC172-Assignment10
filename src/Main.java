@@ -19,5 +19,8 @@ public class Main {
 		System.out.println(tree.lookup(5));
 		System.out.println(tree.lookup(4));
 		System.out.println(tree.lookup(100));
+	    tree.delete(3);
+	    tree.delete(2);
+	    tree.printInOrder();
 	}
 }
